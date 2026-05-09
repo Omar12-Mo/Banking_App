@@ -10,5 +10,6 @@ class AppColors {
   static const Color redColor = Color(0xffFF3F60);
   static const Color usdColor = Color(0xff9BB2D4);
   static const Color inputField = Color(0xffF4F4F4);
+  static const Color dotColor = Color(0xff707070);
 
 }

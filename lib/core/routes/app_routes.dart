@@ -6,7 +6,7 @@ import 'package:banking_mobile_app/features/cards/presentation/my_cards_view.dar
 import 'package:banking_mobile_app/features/category_chart/presentation/category_chart_view.dart';
 import 'package:banking_mobile_app/features/home/presentation/home_view.dart';
 import 'package:banking_mobile_app/features/language/presentation/languages_view.dart';
-import 'package:banking_mobile_app/features/on_boarding/presentation/on_boarding_view.dart';
+import 'package:banking_mobile_app/features/on_boarding/presentation/views/on_boarding_view.dart';
 import 'package:banking_mobile_app/features/profille/presentation/profile_view.dart';
 import 'package:banking_mobile_app/features/send_money/presentation/send_money_view.dart';
 import 'package:banking_mobile_app/features/settings/presentation/settings_view.dart';
@@ -38,7 +38,7 @@ class AppRoutes {
       case Routes.initalRoute:
         return MaterialPageRoute(
           builder: (contex) {
-            return MainView();
+            return OnBoardingView();
           },
         );
       case Routes.categoryChartView:

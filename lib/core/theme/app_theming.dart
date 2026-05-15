@@ -17,6 +17,9 @@ ThemeData getLightTheme() {
     //elevated Button
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
+        
+       
+        foregroundColor: AppColors.whiteColor,
         backgroundColor: AppColors.primaryColor,
         textStyle: AppTextStyle.semiboldWhite,
         shape: RoundedRectangleBorder(
@@ -28,7 +31,7 @@ ThemeData getLightTheme() {
     //text Field
     inputDecorationTheme: InputDecorationThemeData(
       fillColor: AppColors.inputField,
-      filled: true,
+      
       prefixIconColor: AppColors.smallTextColor,
       suffixIconColor: AppColors.smallTextColor,
       labelStyle: AppTextStyle.regularSecondry14.copyWith(
@@ -38,9 +41,9 @@ ThemeData getLightTheme() {
         color: AppColors.smallTextColor,
       ),
       //enabled Border
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      // enabledBorder: OutlineInputBorder(
+      //   borderRadius: BorderRadius.circular(12),
+      // ),
 
       //focus Border
       focusedBorder: UnderlineInputBorder(

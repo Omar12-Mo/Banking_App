@@ -1,4 +1,6 @@
+import 'package:banking_mobile_app/core/database/cache/cache_helper.dart';
 import 'package:banking_mobile_app/core/routes/app_routes.dart';
+import 'package:banking_mobile_app/core/service/service_locator.dart';
 import 'package:banking_mobile_app/core/theme/app_colors.dart';
 import 'package:banking_mobile_app/core/theme/app_text_style.dart';
 import 'package:banking_mobile_app/features/on_boarding/data/models/boarding_model.dart';
@@ -10,7 +12,8 @@ class OnBoardingPage extends StatelessWidget {
   const OnBoardingPage({
     super.key,
     required this.boardingModel,
-    required this.pageController, required this.index,
+    required this.pageController,
+    required this.index,
   });
   final BoardingModel boardingModel;
   final PageController pageController;
@@ -47,12 +50,18 @@ class OnBoardingPage extends StatelessWidget {
           Spacer(),
           ElevatedButton(
             onPressed: () {
-              index==2? 
-              Navigator.pushReplacementNamed(context, Routes.signinView )
-              :pageController.nextPage(
-                duration: Duration(milliseconds: 200),
-                curve: Curves.bounceIn,
-              );
+              if (index == 2) {
+                Navigator.pushReplacementNamed(context, Routes.signinView);
+                sl<CacheHelper>().saveData(
+                  key: CacheHelper.isVisitedKey,
+                  value: true,
+                );
+              } else {
+                pageController.nextPage(
+                  duration: Duration(milliseconds: 200),
+                  curve: Curves.bounceIn,
+                );
+              }
             },
             child: Center(
               child: Text("next", style: AppTextStyle.semiboldWhite),

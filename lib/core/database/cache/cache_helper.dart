@@ -3,7 +3,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 class CacheHelper {
   late SharedPreferences sharedPreferences;
 
-    init() async {
+  static const String isVisitedKey = 'isVisited';
+  static const String isLoggedInKey = 'isLoggedIn';
+
+  init() async {
     sharedPreferences = await SharedPreferences.getInstance();
   }
 
@@ -19,19 +22,20 @@ class CacheHelper {
     }
   }
 
-  dynamic getData({required String key}) {
-    sharedPreferences.get(key);
+  bool? getData({required String key}) {
+   
+   return sharedPreferences.getBool(key);
   }
 
   bool containsKey({required String key}) {
     return sharedPreferences.containsKey(key);
   }
 
- Future<bool> removeData({required String key})async {
-   return await sharedPreferences.remove(key);
+  Future<bool> removeData({required String key}) async {
+    return await sharedPreferences.remove(key);
   }
 
-   Future<bool> clearData() async {
+  Future<bool> clearData() async {
     return await sharedPreferences.clear();
   }
 }

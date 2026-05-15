@@ -1,12 +1,14 @@
 import 'package:banking_mobile_app/App/main_view.dart';
+import 'package:banking_mobile_app/core/database/cache/cache_helper.dart';
+import 'package:banking_mobile_app/core/service/service_locator.dart';
 import 'package:banking_mobile_app/features/Request_money/presentation/request_money_view.dart';
-import 'package:banking_mobile_app/features/auth/presentation/sign_up_view.dart';
-import 'package:banking_mobile_app/features/auth/presentation/sing_in_view.dart';
+import 'package:banking_mobile_app/features/auth/presentation/views/sign_up_view.dart';
+import 'package:banking_mobile_app/features/auth/presentation/views/sing_in_view.dart';
 import 'package:banking_mobile_app/features/cards/presentation/my_cards_view.dart';
 import 'package:banking_mobile_app/features/category_chart/presentation/category_chart_view.dart';
 import 'package:banking_mobile_app/features/home/presentation/home_view.dart';
 import 'package:banking_mobile_app/features/language/presentation/languages_view.dart';
-import 'package:banking_mobile_app/features/on_boarding/presentation/on_boarding_view.dart';
+import 'package:banking_mobile_app/features/on_boarding/presentation/views/on_boarding_view.dart';
 import 'package:banking_mobile_app/features/profille/presentation/profile_view.dart';
 import 'package:banking_mobile_app/features/send_money/presentation/send_money_view.dart';
 import 'package:banking_mobile_app/features/settings/presentation/settings_view.dart';
@@ -38,7 +40,7 @@ class AppRoutes {
       case Routes.initalRoute:
         return MaterialPageRoute(
           builder: (contex) {
-            return MainView();
+          return  getInitilRoute();
           },
         );
       case Routes.categoryChartView:
@@ -119,6 +121,12 @@ class AppRoutes {
             return TransactionHistoryView();
           },
         );
+      case Routes.mainView:
+        return MaterialPageRoute(
+          builder: (contex) {
+            return MainView();
+          },
+        );
       default:
         return MaterialPageRoute(
           builder: (contex) {
@@ -126,5 +134,20 @@ class AppRoutes {
           },
         );
     }
+  }
+}
+
+Widget getInitilRoute() {
+  bool isVisited =
+      sl<CacheHelper>().getData(key: CacheHelper.isVisitedKey) ?? false;
+  bool islogged =
+      sl<CacheHelper>().getData(key: CacheHelper.isLoggedInKey) ?? false;
+
+  if (!isVisited) {
+    return OnBoardingView();
+  } else if (!islogged) {
+    return SingInView();
+  } else {
+    return MainView();
   }
 }
